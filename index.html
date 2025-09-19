@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <title>Leena's Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      transition: all 0.4s ease-in-out;
+    }
+
+    body.dark {
+      background-color: #1F252E;
+      color: #fff;
+    }
+
+    body.light {
+      background-color: #f5f5f5;
+      color: #111;
+    }
+
+    /* Navbar */
+    header {
+      padding: 1.2rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      max-width: 90%;
+      margin: auto;
+      align-items: center;
+      background: transparent;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .logo a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .7px;
+      padding: 0.4rem 1rem;
+      transition: 0.3s;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #00E8F8;
+    }
+
+    #click {
+      display: none;
+    }
+
+    .menu {
+      display: none;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #00E8F8;
+      margin-left: 1rem;
+      transition: 0.3s;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 10%;
+    }
+
+    /* Hero Section */
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+
+    .main p {
+      margin-top: 1rem;
+      font-size: .98rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      color: #00E8F8;
+      font-weight: 500;
+    }
+
+    .cta-buttons {
+      margin-top: 1.5rem;
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      margin-right: 1rem;
+      border-radius: 8px;
+      background: #00E8F8;
+      color: #1F252E;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .cta-buttons a:hover {
+      background: #1F252E;
+      color: #00E8F8;
+      border: 1px solid #00E8F8;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      margin-top: 1.7rem;
+    }
+
+    .social a {
+      color: #00E8F8;
+      font-size: 1rem;
+      border: 1.6px solid #00E8F8;
+      border-radius: 50%;
+      padding: .35rem;
+      text-align: center;
+      width: 26px;
+      transition: 0.3s;
+    }
+
+    .social a:hover {
+      color: #1F252E;
+      background-color: #00E8F8;
+      box-shadow: 0 0 20px #00E8F8;
+    }
+
+    .main h1 span:nth-child(1) {
+      font-size: 1.5rem;
+    }
+
+    .main h1 span:nth-child(2) {
+      color: #00E8F8;
+    }
+
+    .images {
+      width: 400px;
+    }
+
+    /* About / Skills / Projects / Contact */
+    .about,
+    .skills,
+    .projects,
+    .contact {
+      text-align: center;
+    }
+
+    .about h2,
+    .skills h2,
+    .projects h2,
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #00E8F8;
+    }
+
+    .skills-container,
+    .projects-container,
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-box,
+    .project-box,
+    .contact-box {
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #00E8F8;
+      transition: 0.3s;
+    }
+
+    .skill-box:hover,
+    .project-box:hover,
+    .contact-box:hover {
+      background: #00E8F8;
+      color: #1F252E;
+      transform: translateY(-5px);
+    }
+
+    .project-box img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .project-box img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(0, 232, 248, 0.4);
+    }
+
+    .contact-box i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #00E8F8;
+    }
+    .resume-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  background: #00E8F8;
+  color: #1F252E;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.resume-btn:hover {
+  background: #1F252E;
+  color: #00E8F8;
+  border: 1px solid #00E8F8;
+}
+    @media only screen and (max-width:480px) {
+      .menu {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #244D61;
+      }
+
+      header {
+        padding: 0.7rem 1rem;
+        max-width: 100%;
+      }
+
+      nav {
+        position: absolute;
+        display: grid;
+        top: 75px;
+        text-align: center;
+        background-color: inherit;
+        left: -100%;
+        z-index: 1;
+        width: 100%;
+      }
+
+      #click:checked~nav {
+        left: 0%;
+        transition: all 0.3s ease;
+      }
+
+      section {
+        padding: 2rem 5%;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark">
+  <header>
+    <div class="logo">
+      <a href="#">Leena's Portfolio </a>
+    </div>
+    <input type="checkbox" id="click">
+    <label for="click" class="mainicon">
+      <div class="menu">
+        <i class="bi bi-list"></i>
+      </div>
+    </label>
+
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <i class="bi bi-brightness-high theme-toggle" id="theme-btn"></i>
+    </nav>
+  </header>
+
+  <!-- ===== HOME ===== -->
+  <section id="home">
+    <div class="main">
+      <div class="detail">
+        <h1><span>Hi, It's Me</span> <br> I'm <span style="color:#00E8F8;">Leena</span></h1>
+        <p class="tagline"> <span id="typing"></span></p>
+        <div class="cta-buttons">
+          <a href="#contact">Hire Me</a>
+          <a href="#contact">Contact Me</a>
+        </div>
+        <div class="social">
+          <a href="#"><i class="bi bi-github"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+      <div class="images">
+       <!-- <img src="https://raw.githubusercontent.com/Leena0506/portfolio/main/img/avatar1.png" 
+     alt="Profile Picture" width="70%"> -->
+
+        <img src="img/avatar1.png" alt="Profile Picture" width="70%">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+ <!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <h2>About Me</h2>
+  <p>
+    I am a passionate web developer building modern, responsive websites and web applications. 
+    I specialize in HTML, CSS, and JavaScript, and I’m dedicated to delivering high-quality, 
+    user-centric solutions. I love solving problems and collaborating with teams 
+    to create impactful digital experiences.
+  </p>
+
+  <h3>🎯 Career Goal</h3>
+  <p>
+    I aim to become a <strong>Full-Stack Developer</strong> working on innovative and impactful projects 
+    that make a real difference in people’s lives.
+  </p>
+
+  <!-- Resume Download Button -->
+
+  <!--<img src="https://raw.githubusercontent.com/Leena0506/portfolio/main/img/avatar1.png" 
+     alt="Profile Picture" width="70%">-->
+
+
+
+  <a href="img/resume.png" class="resume-btn" download>📄 Download Resume</a>
+</section>
+
+  
+
+
+  <!-- ===== SKILLS ===== -->
+  <section class="skills" id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-container">
+      <div class="skill-box">
+        <h3>Hard Skills</h3>
+        <p>HTML, CSS, JavaScript, Angular JS, PHP</p>
+      </div>
+      <div class="skill-box">
+        <h3>Soft Skills</h3>
+        <p>Teamwork, Problem-Solving, Communication, Creativity</p>
+      </div>
+      <div class="skill-box">
+        <h3>Technical Skills</h3>
+        <p>Database Management, Git & GitHub, APIs, Cloud Basics</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+   <div class="projects-container">
+  <div class="project-box">
+    <img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Portfolio Website">
+    <h3>Portfolio Website</h3>
+    <p>A personal portfolio website built with HTML, CSS, and JavaScript.</p>
+  </div>
+
+  <div class="project-box">
+    <img src="https://images.unsplash.com/photo-1542831371-d531d36971e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Amazon Clone">
+    <h3>Amazon Clone</h3>
+    <p>Frontend: HTML, CSS, JavaScript | Backend: PHP</p>
+    <a href="https://github.com/Leena0506/Amazon-clone-" target="_blank">View Project</a>
+  </div>
+
+  <div class="project-box">
+  <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_640.jpg" alt="Pizza Bill Generator">
+  <h3>Pizza Bill Generator</h3>
+  <p>Simple Java program to generate pizza bills.</p>
+  <a href="https://github.com/Leena0506/Pizza-bill-Generator" target="_blank">View Project</a>
+</div>
+
+</div>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-container">
+      <div class="contact-box">
+        <i class="bi bi-envelope-fill"></i>
+        <h3>Email</h3>
+        <p><a href="mailto:leenasonawane594@gmail.com">leenasonawane594@gmail.com</a></p>
+      </div>
+      <div class="contact-box">
+        <i class="bi bi-linkedin"></i>
+        <h3>LinkedIn</h3>
+        <p><a href="https://www.linkedin.com/in/leena-sonawane-928b04285" target="_blank">linkedin.com/in/leena-sonawane</a></p>
+      </div>
+      <div class="contact-box">
+        <i class="bi bi-github"></i>
+        <h3>GitHub</h3>
+        <p><a href="https://github.com/Leena0506" target="_blank">github.com/Leena0506</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theme Toggle & Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    const themeBtn = document.getElementById("theme-btn");
+    const body = document.body;
+
+    themeBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+
+      if (body.classList.contains("light")) {
+        themeBtn.classList.replace("bi-brightness-high", "bi-moon");
+      } else {
+        themeBtn.classList.replace("bi-moon", "bi-brightness-high");
+      }
+    });
+
+    // Typing Animation
+    var typed = new Typed("#typing", {
+      strings: ["Web Developer", "Problem Solver", "Lifelong Learner"],
+      typeSpeed: 80,
+      backSpeed: 50,
+      loop: true
+    });
+  </script>
+</body>
+
+</html>
